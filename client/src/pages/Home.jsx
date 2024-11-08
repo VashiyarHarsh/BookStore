@@ -18,7 +18,7 @@ const Home = () => {
     setLoading(true);
     axios.get('http://localhost:3000/books')
       .then(response => {
-        setBooks(response.data.data); // response.data.data is the array of books
+        setBooks(response.data.data); 
         setBooksCount(response.data.count);
         setLoading(false);
       })

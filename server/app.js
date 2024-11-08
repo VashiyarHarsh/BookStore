@@ -1,13 +1,18 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bookRouter from './routers/bookRouter.js';
+import userRouter from './routers/userRouter.js';
+import { checkForAuthenticationCookie } from './middlewares/authentication.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 const app = express();
 
 dotenv.config();
 
 app.use(express.json());
+app.use(cookieParser());
+app.use(checkForAuthenticationCookie('token'));
 app.use(cors());
 // app.use(cors({
 //     origin: 'http://localhost:3000',
@@ -20,6 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/books', bookRouter);
+app.use('/users', userRouter);
 
 mongoose.connect(process.env.mongoURI)
 .then(() => { 
