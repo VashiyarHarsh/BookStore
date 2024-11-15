@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:3000/books')
+    axios.get('https://book-store-fzzz.vercel.app/books')
       .then(response => {
         setBooks(response.data.data); 
         setBooksCount(response.data.count);
