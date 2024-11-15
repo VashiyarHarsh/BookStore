@@ -36,3 +36,5 @@ mongoose.connect(process.env.mongoURI)
     });
 })
 .catch((err) => console.log(err));
+
+export default app;
